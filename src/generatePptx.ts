@@ -1,17 +1,25 @@
 // src/generatePptx.ts
 import PptxGenJS from "pptxgenjs";
-import { addMainTitle } from "./components/MainTitle";
-import { addHeading } from "./components/Heading";
-import { headingStyles } from "./config/styleConfig";
+import { addMainTitle } from "./components//MainTitle/MainTitle";
+import { addHeading } from "./components/Heading/Heading";
+import { headingStyles } from "./components/Heading/styleConfig";
+import { themes } from "./config/themeConfig";
 
-function createPresentation() {
+function createPresentation(themeName: string) {
   let pptx = new PptxGenJS();
   let slide1 = pptx.addSlide();
   let slide2 = pptx.addSlide();
+  const theme = themes[themeName];
 
+  //Slide 1
   // Add a main title to the slide
-  addMainTitle(slide1, "Welcome to Our Presentation!");
-  addHeading(slide2, "First Heading", headingStyles.default);
+  addMainTitle(slide1, "Welcome to Our Presentation!", themeName);
+  // Set the background color of the slide
+  slide1.background = { fill: theme.primaryColor };
+
+  //Slide 2
+  // Add a heading to the slide
+  addHeading(slide2, "First Heading", themeName);
 
   // Save the presentation
   pptx
@@ -24,4 +32,4 @@ function createPresentation() {
     });
 }
 
-createPresentation();
+createPresentation("defaultTheme");

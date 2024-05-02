@@ -1,6 +1,6 @@
-// src/config/stylesConfig.ts
+import { Component } from "../../types/componentTypes";
 
-export const headingStyles = {
+export const headingStyles: Record<string, Component> = {
   default: {
     x: 0.5,
     y: 1.75,
@@ -10,7 +10,7 @@ export const headingStyles = {
     fontColor: "305597", // Blue font color
     fontSize: 32,
     bold: true,
-    fill: "000000", // Transparent background
+    fill: "FFFFFF", // Transparent background
   },
   secondary: {
     x: 0.5,
@@ -21,6 +21,6 @@ export const headingStyles = {
     fontColor: "000000", // Black font color for contrast
     fontSize: 24,
     bold: false,
-    fill: "000000", // Transparent background
+    fill: "FFFFFF", // Transparent background
   },
 };
