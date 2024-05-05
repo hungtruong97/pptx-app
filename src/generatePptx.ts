@@ -1,21 +1,13 @@
 // src/generatePptx.ts
 import PptxGenJS from "pptxgenjs";
-import { addMainTitle } from "./components//MainTitle/MainTitle";
 import { addHeading } from "./components/Heading/Heading";
-import { headingStyles } from "./components/Heading/styleConfig";
-import { themes } from "./config/themeConfig";
+import { createTitleSlide } from "./layouts/TitleSlide/TitleSlide";
+import { titleSlideContent } from "./content/TitleSlide/TitleSlide";
 
 function createPresentation(themeName: string) {
-  let pptx = new PptxGenJS();
-  let slide1 = pptx.addSlide();
-  let slide2 = pptx.addSlide();
-  const theme = themes[themeName];
-
-  //Slide 1
-  // Add a main title to the slide
-  addMainTitle(slide1, "Welcome to Our Presentation!", themeName);
-  // Set the background color of the slide
-  slide1.background = { fill: theme.primaryColor };
+  const pptx = new PptxGenJS();
+  const slide1 = createTitleSlide(pptx, themeName, titleSlideContent);
+  const slide2 = pptx.addSlide();
 
   //Slide 2
   // Add a heading to the slide
@@ -23,7 +15,7 @@ function createPresentation(themeName: string) {
 
   // Save the presentation
   pptx
-    .writeFile({ fileName: "SamplePresentation.pptx" })
+    .writeFile({ fileName: "SamplePresentationCanBeDeleted.pptx" })
     .then(() => {
       console.log("Presentation created successfully!");
     })
