@@ -1,8 +1,8 @@
-// src/components/MainTitle.ts
+// src/components/Title.ts
 import { themes } from "../../config/themeConfig";
 import { mainTitleStyles } from "./styleConfig";
 
-export function addMainTitle(
+export function addTitle(
   slide: any,
   x: number,
   y: number,
@@ -24,6 +24,7 @@ export function addMainTitle(
     w,
     h, // Position and size
     align: style.align, // Alignment
+    valign: style.valign, // Vertical alignment
     fontSize: style.fontSize, // Font size
     bold: style.bold, // Bold text
     color: theme.secondaryColor, // White font color

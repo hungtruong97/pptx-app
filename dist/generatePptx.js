@@ -5,19 +5,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 // src/generatePptx.ts
 const pptxgenjs_1 = __importDefault(require("pptxgenjs"));
-const Heading_1 = require("./components/Heading/Heading");
-const TitleSlide_1 = require("./layouts/TitleSlide/TitleSlide");
-const TitleSlide_2 = require("./content/TitleSlide/TitleSlide");
+const TitleSlide_1 = require("./layouts/titleSlide/TitleSlide");
+const content_1 = require("./content/titleSlide/content");
+const ordinaryWithHeadingAndText_1 = require("./layouts/contentSlide/ordinaryWithHeadingAndText");
+const content_2 = require("./content/contentSlide/content");
 function createPresentation(themeName) {
     const pptx = new pptxgenjs_1.default();
-    const slide1 = (0, TitleSlide_1.createTitleSlide)(pptx, themeName, TitleSlide_2.titleSlideContent);
-    const slide2 = pptx.addSlide();
-    //Slide 2
-    // Add a heading to the slide
-    (0, Heading_1.addHeading)(slide2, "First Heading", themeName);
+    const slide1 = (0, TitleSlide_1.createTitleSlide)(pptx, themeName, content_1.titleSlideContent);
+    const slide2 = (0, ordinaryWithHeadingAndText_1.createOrdinaryWithHeadingAndTextSlide)(pptx, themeName, content_2.ordinaryWithHeadingAndTextSlideContent);
     // Save the presentation
     pptx
-        .writeFile({ fileName: "SamplePresentation.pptx" })
+        .writeFile({ fileName: "SamplePresentationCanBeDeleted.pptx" })
         .then(() => {
         console.log("Presentation created successfully!");
     })

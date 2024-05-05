@@ -1,17 +1,19 @@
 // src/generatePptx.ts
 import PptxGenJS from "pptxgenjs";
 import { addHeading } from "./components/Heading/Heading";
-import { createTitleSlide } from "./layouts/TitleSlide/TitleSlide";
-import { titleSlideContent } from "./content/TitleSlide/TitleSlide";
+import { createTitleSlide } from "./layouts/titleSlide/TitleSlide";
+import { titleSlideContent } from "./content/titleSlide/content";
+import { createOrdinaryWithHeadingAndTextSlide } from "./layouts/contentSlide/ordinaryWithHeadingAndText";
+import { ordinaryWithHeadingAndTextSlideContent } from "./content/contentSlide/content";
 
 function createPresentation(themeName: string) {
   const pptx = new PptxGenJS();
   const slide1 = createTitleSlide(pptx, themeName, titleSlideContent);
-  const slide2 = pptx.addSlide();
-
-  //Slide 2
-  // Add a heading to the slide
-  addHeading(slide2, "First Heading", themeName);
+  const slide2 = createOrdinaryWithHeadingAndTextSlide(
+    pptx,
+    themeName,
+    ordinaryWithHeadingAndTextSlideContent
+  );
 
   // Save the presentation
   pptx

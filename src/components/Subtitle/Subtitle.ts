@@ -1,8 +1,8 @@
 // src/components/Heading.ts
 import { themes } from "../../config/themeConfig";
-import { headingStyles } from "./styleConfig";
+import { subtitleStyles } from "./styleConfig";
 
-export function addHeading(
+export function addSubtitle(
   slide: any,
   x: number,
   y: number,
@@ -16,7 +16,7 @@ export function addHeading(
   const theme = themes[themeName];
 
   // Get the specific style from headingStyles
-  const style = headingStyles[styleName];
+  const style = subtitleStyles[styleName];
 
   // Add heading text with specified options
   slide.addText(headingText, {
@@ -28,7 +28,7 @@ export function addHeading(
     valign: style.valign, // Vertical alignment
     fontSize: style.fontSize, // Font size
     bold: style.bold, // Bold text
-    color: theme.primaryColor, // Font color (blue)
+    color: theme.tertiaryColor, // Font color
     fontFace: theme.font, // Font type
   });
 }

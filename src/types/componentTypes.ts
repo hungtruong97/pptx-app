@@ -1,10 +1,12 @@
+import { Theme } from "./themeTypes";
 export interface TextComponent {
   align: "left" | "center" | "right" | "justify";
+  valign: "top" | "middle" | "bottom";
   fontSize: number;
   bold: boolean;
   fill?: string;
   fontFace?: string;
-  fontColor?: string;
+  fontColor?: any;
 }
 
 export interface ImageComponent {

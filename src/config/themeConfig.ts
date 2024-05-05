@@ -6,6 +6,7 @@ export const themes: Record<string, Theme> = {
     secondaryColor: "FFFFFF",
     tertiaryColor: "D9D9D9",
     accentColor: "FFA500",
+    textColor: "2D2C2C",
     font: "Roboto",
   },
   darkTheme: {
@@ -13,6 +14,7 @@ export const themes: Record<string, Theme> = {
     secondaryColor: "FFFFFF",
     tertiaryColor: "305597",
     accentColor: "FFA500",
+    textColor: "FFFFFF",
     font: "Helvetica",
   },
 };

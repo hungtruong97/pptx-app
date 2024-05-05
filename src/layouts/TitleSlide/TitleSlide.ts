@@ -1,7 +1,8 @@
 // src/slides/createTitleSlide.ts
 import { cmToInches } from "../../utils/convertUnit";
 import { themes } from "../../config/themeConfig";
-import { addMainTitle } from "../../components/MainTitle/MainTitle";
+import { addTitle } from "../../components/Title/Title";
+import { addSubtitle } from "../../components/Subtitle/Subtitle";
 
 export function createTitleSlide(pptx: any, themeName: string, content: any) {
   const slide = pptx.addSlide();
@@ -11,12 +12,22 @@ export function createTitleSlide(pptx: any, themeName: string, content: any) {
   slide.background = { fill: theme.primaryColor };
 
   // Specify the position and size of the main title on the title slide
-  const x = 0; //  from the left
-  const y = 6.26; //  from the top
-  const w = 17.39; //  wide
-  const h = 4.53; //  high
+  const mainTitleSizeAndPosition = {
+    x: 1.73, //  from the left
+    y: 6.26, //  from the top
+    w: 16, //  wide
+    h: 4.5, //  high
+  };
 
-  console.log(pptx.layoutWidth);
+  // Specify the position and size of the subtitle on the title slide
+  const subTitleSizeAndPosition = {
+    x: 1.73,
+    y: 10.08,
+    w: 22,
+    h: 1.8,
+  };
+
+  // Specify the position and size of the main title on the title slide
 
   // Adding shape to the slide
   slide.addShape(pptx.shapes.RECTANGLE, {
@@ -28,14 +39,30 @@ export function createTitleSlide(pptx: any, themeName: string, content: any) {
   });
 
   // Adding main title specific to title slide
-  content.title?.addMainTitle(
-    slide,
-    cmToInches(x),
-    cmToInches(y),
-    cmToInches(w),
-    cmToInches(h),
-    content.title,
-    themeName
-  );
+  if (content.title) {
+    addTitle(
+      slide,
+      cmToInches(mainTitleSizeAndPosition.x),
+      cmToInches(mainTitleSizeAndPosition.y),
+      cmToInches(mainTitleSizeAndPosition.w),
+      cmToInches(mainTitleSizeAndPosition.h),
+      content.title,
+      themeName
+    );
+  }
+
+  //Adding subtitle specific to title slide
+  if (content.subtitle) {
+    addSubtitle(
+      slide,
+      cmToInches(subTitleSizeAndPosition.x),
+      cmToInches(subTitleSizeAndPosition.y),
+      cmToInches(subTitleSizeAndPosition.w),
+      cmToInches(subTitleSizeAndPosition.h),
+      content.subtitle,
+      themeName
+    );
+  }
+
   return slide;
 }
