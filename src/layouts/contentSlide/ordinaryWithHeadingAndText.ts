@@ -3,6 +3,7 @@ import { cmToInches } from "../../utils/convertUnit";
 import { themes } from "../../config/themeConfig";
 import { addHeading } from "../../components/Heading/Heading";
 import { addBodyText } from "../../components/BodyText/BodyText";
+import { addPageNumber } from "../../components/PageNumber/PageNumber";
 
 export function createOrdinaryWithHeadingAndTextSlide(
   pptx: any,
@@ -29,6 +30,14 @@ export function createOrdinaryWithHeadingAndTextSlide(
     y: 2, //  from the top
     w: 23, //  wide
     h: 11, //  high
+  };
+
+  //Specify the position and size of the page number
+  const pageNumberSizeAndPosition = {
+    x: 24.5, //  from the left
+    y: 13.5, //  from the top
+    w: 0.6, //  wide
+    h: 0.6, //  high
   };
 
   // Adding shape to the slide
@@ -64,6 +73,19 @@ export function createOrdinaryWithHeadingAndTextSlide(
       content.text,
       themeName
     );
+
+    //Adding page number
+    if (content.pageNumber) {
+      addPageNumber(
+        slide,
+        cmToInches(pageNumberSizeAndPosition.x),
+        cmToInches(pageNumberSizeAndPosition.y),
+        cmToInches(pageNumberSizeAndPosition.w),
+        cmToInches(pageNumberSizeAndPosition.h),
+        content.pageNumber,
+        themeName
+      );
+    }
   }
 
   return slide;
